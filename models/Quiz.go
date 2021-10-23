@@ -7,4 +7,5 @@ type Quiz struct {
 	TotalQuestions int `json:"total-questions"`
 	Question *Question `json:"question"`
 	Players map[*websocket.Conn]*Player
+	Options map[string]bool
 }

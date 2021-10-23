@@ -1,18 +1,26 @@
 package services
 
 import (
-	"testing"
+	"arabic-server/models"
 	. "github.com/stretchr/testify/assert"
-
+	"testing"
 )
 
 func Test_it_generates_3_letter_roots(t *testing.T)  {
 	Equal(t, len(generateRoot3()), 3)
 }
 
+func Test_it_gets_family_question(t *testing.T) {
+	obj := &questioner{}
+	rs := obj.identifyFamily()
+	Equal(t, len(rs.Choices), 4)
+	NotEmpty(t, rs.QuestionText)
+	NotEmpty(t, rs.CorrectAnswer)
+}
+
 func Test_it_generate_4_choices_with_right_answer(t *testing.T) {
 	found := false
-	rs := generateAnswers("hello")
+	rs := generateAnswers("hello", models.PastPronouns)
 	for i := 0; i < len(rs); i++ {
 		if rs[i] == "hello" {
 			found = true
